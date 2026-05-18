@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>University of Science &amp; Strategic Research</title>
+<meta name="description" content="Established in 2026, the University of Science &amp; Strategic Research is a research institution in Moscow advancing fundamental science across nine interdisciplinary directions." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Unbounded:wght@500;600;700&display=swap">
+
+<style>
+  :root{
+    --ink:        #0E1B2C;
+    --ink-2:      #1B2A40;
+    --paper:      #F4EFE6;
+    --paper-2:    #ECE5D6;
+    --copper:     oklch(0.66 0.12 55);
+    --copper-ink: oklch(0.42 0.10 55);
+    --rule:       rgba(14,27,44,0.14);
+    --muted:      rgba(14,27,44,0.62);
+    --serif:      "Spectral", "Iowan Old Style", Georgia, serif;
+    --sans:       "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --mono:       "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-0.01em;margin:0;text-wrap:balance}
+  p{text-wrap:pretty}
+
+  /* ── Layout ── */
+  .wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+  .rule{height:1px;background:var(--rule);width:100%}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)}
+
+  /* ── Header ── */
+  header.site{
+    position:sticky;top:0;z-index:20;
+    background:rgba(244,239,230,0.86);
+    backdrop-filter:blur(10px) saturate(140%);
+    -webkit-backdrop-filter:blur(10px) saturate(140%);
+    border-bottom:1px solid var(--rule);
+  }
+  header.site .wrap{display:flex;align-items:center;justify-content:space-between;padding:18px 32px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand .logo{width:46px;height:46px;display:flex;align-items:center;justify-content:center}
+  .brand .logo svg{display:block;width:100%;height:100%}
+  .brand .wm{display:flex;flex-direction:column;line-height:1.05}
+  .brand .wm .name{font-family:var(--serif);font-size:18px;font-weight:600;letter-spacing:0.005em}
+  .brand .wm .tag{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+
+  nav.primary{display:flex;align-items:center;gap:30px;font-size:14px;font-weight:500}
+  nav.primary a{color:var(--ink);opacity:0.78;position:relative;padding:6px 0}
+  nav.primary a:hover{opacity:1}
+
+  /* ── Language toggle ── */
+  .lang-toggle{
+    display:inline-flex;align-items:center;gap:6px;
+    margin-left:18px;padding:6px 10px;
+    border:1px solid var(--rule);border-radius:999px;
+    font-family:var(--mono);font-size:11px;letter-spacing:0.08em;
+  }
+  .lang-toggle .lang-opt{
+    background:transparent;border:0;padding:2px 4px;margin:0;
+    color:var(--ink);opacity:0.55;cursor:pointer;
+    font-family:inherit;font-size:inherit;letter-spacing:inherit;
+    transition:opacity 0.15s ease, color 0.15s ease;
+  }
+  .lang-toggle .lang-opt:hover{opacity:0.85}
+  .lang-toggle .lang-opt.is-active{opacity:1;color:var(--copper-ink);font-weight:500}
+  .lang-toggle .lang-sep{opacity:0.35}
+
+  /* ── Hero ── */
+  .hero{padding:84px 0 72px;position:relative;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:end}
+  .hero h1{
+    font-size:clamp(48px,6.2vw,92px);
+    line-height:0.98;letter-spacing:-0.025em;font-weight:400;
+  }
+  html[lang="ru"] .hero h1{font-size:clamp(38px,4.6vw,64px);letter-spacing:-0.02em}
+  .hero h1 em{font-style:italic;color:var(--copper-ink);font-weight:400}
+  .hero .lede{max-width:520px;margin-top:28px;font-size:18px;line-height:1.55;color:var(--ink)}
+  .young-flag{
+    display:inline-flex;align-items:center;gap:10px;
+    margin-bottom:28px;padding:7px 12px;
+    border:1px solid var(--rule);border-radius:999px;
+    color:var(--copper-ink);background:rgba(244,239,230,0.4);
+    font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  }
+  .young-flag .dot{
+    width:6px;height:6px;border-radius:50%;background:var(--copper);
+    animation:pulse 1.8s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 var(--copper);opacity:1}
+    70%{box-shadow:0 0 0 7px rgba(0,0,0,0);opacity:0.9}
+    100%{box-shadow:0 0 0 0 rgba(0,0,0,0);opacity:1}
+  }
+  .hero-img{
+    aspect-ratio:4/5;border-radius:2px;position:relative;overflow:hidden;
+    background:var(--paper-2);border:1px solid var(--rule);
+  }
+  .hero-img .cap{
+    position:absolute;left:14px;bottom:14px;
+    font-family:var(--mono);font-size:10px;letter-spacing:0.1em;
+    color:var(--ink);background:var(--paper);padding:6px 10px;border:1px solid var(--rule);
+  }
+  .hero-img.hero-photo{aspect-ratio:1/1;background:var(--ink)}
+  .hero-img.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block}
+
+  /* ── Research grid ── */
+  section.block{padding:96px 0}
+  section[id]{scroll-margin-top:88px}
+  #research{scroll-margin-top:45px}
+  #join{scroll-margin-top:0}
+  .section-head{display:flex;flex-direction:column;gap:24px;margin-bottom:56px}
+  .section-head h2{font-size:clamp(32px,3.6vw,46px);letter-spacing:-0.02em;line-height:1.06;font-weight:400;text-wrap:balance}
+  .section-head .desc{color:var(--ink);font-size:18px;line-height:1.55;max-width:640px;margin:0}
+  .section-head .desc.wide{max-width:none}
+
+  .research{
+    display:grid;grid-template-columns:repeat(12,1fr);gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+  }
+  .r-card{
+    background:var(--paper);color:var(--ink);
+    padding:28px 24px;display:flex;flex-direction:column;gap:14px;
+    cursor:default;transition:background 0.2s ease, color 0.2s ease;
+    position:relative;min-height:280px;
+  }
+  .r-card:hover{background:var(--ink);color:var(--paper)}
+  .r-card .r-num{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;color:var(--muted);transition:color 0.2s ease}
+  .r-card:hover .r-num,.r-card:hover .r-sub{color:rgba(244,239,230,0.7)}
+  .r-card.span-4{grid-column:span 4}
+  .r-card.span-6{grid-column:span 6}
+  .r-card.span-3{grid-column:span 3}
+  .r-card h3{font-size:24px;line-height:1.1;letter-spacing:-0.01em;font-weight:500}
+  .r-card .r-sub{font-size:13.5px;color:var(--muted);line-height:1.55;flex:1;transition:color 0.2s ease}
+
+  /* ── About ── */
+  .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:start}
+  .about-img.hero-img{aspect-ratio:1/1;width:100%}
+  #about-img{scroll-margin-top:130px}
+  .hero-img .badge{
+    position:absolute;right:14px;top:14px;
+    font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+    color:var(--paper);background:var(--ink);padding:6px 10px;
+  }
+
+  /* ── Join us ── */
+  .join{background:var(--ink);color:var(--paper);padding:120px 0 64px;border-top:1px solid var(--ink-2)}
+  .join-head{display:flex;flex-direction:column;gap:32px;align-items:flex-start;margin-bottom:72px}
+  .join-head h2{font-family:var(--serif);font-size:clamp(40px,4.8vw,68px);line-height:1.02;letter-spacing:-0.02em;font-weight:400;margin:0}
+  .join-desc{color:rgba(244,239,230,0.78);font-size:18px;line-height:1.55;margin:0}
+
+  .roles{list-style:none;padding:0;margin:0;border-top:1px solid rgba(244,239,230,0.16)}
+  .role{
+    display:grid;grid-template-columns:170px minmax(0,1.4fr) minmax(0,1fr) 32px;
+    gap:32px;align-items:center;
+    padding:28px 0;border-bottom:1px solid rgba(244,239,230,0.16);
+    cursor:default;position:relative;transition:padding-left 0.25s ease;
+  }
+  .role:hover{padding-left:14px}
+  .role-link{position:absolute;inset:0;z-index:2;text-indent:-9999px;overflow:hidden}
+  .role::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:var(--copper);transition:width 0.25s ease}
+  .role:hover::before{width:4px}
+  .role-kind{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;color:rgba(244,239,230,0.55);text-transform:uppercase}
+  .role-title{font-family:var(--serif);font-size:24px;line-height:1.2;letter-spacing:-0.005em}
+  .role-meta{font-size:13.5px;color:rgba(244,239,230,0.65);display:flex;gap:10px;flex-wrap:nowrap;white-space:nowrap;align-items:center}
+  .role-meta .sep{color:rgba(244,239,230,0.65)}
+  .role-arrow{
+    width:32px;height:32px;border:1px solid rgba(244,239,230,0.4);border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:var(--paper);transition:transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .role:hover .role-arrow{transform:translate(2px,-2px);background:var(--copper);color:var(--ink);border-color:var(--copper)}
+
+  .join-cta{
+    margin-top:64px;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;
+    padding-top:48px;border-top:1px solid rgba(244,239,230,0.16);
+  }
+  .join-cta-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;color:rgba(244,239,230,0.55);text-transform:uppercase;margin-bottom:10px}
+  .join-cta-headline{font-family:var(--serif);font-size:32px;line-height:1.1;letter-spacing:-0.01em;font-weight:400}
+  .join-cta-sub{margin-top:8px;color:rgba(244,239,230,0.7)}
+  .join-cta-btn{
+    display:inline-flex;align-items:center;gap:12px;padding:18px 24px;
+    background:var(--paper);color:var(--ink);
+    font-family:var(--mono);font-size:13px;letter-spacing:0.06em;
+    transition:transform 0.2s ease, background 0.2s ease;
+  }
+  .join-cta-btn:hover{background:var(--copper);transform:translateY(-1px)}
+
+  /* ── Footer ── */
+  footer.site{background:var(--ink);color:var(--paper);padding:48px 0 36px}
+  footer.site .mast{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+  footer.site .mast svg{width:48px;height:48px}
+  footer.site .mast .nm{font-family:var(--serif);font-size:20px;line-height:1.1}
+  footer.site .mast .tag{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(244,239,230,0.5);margin-top:4px}
+  footer.site address{font-style:normal;font-size:13px;line-height:1.6;color:rgba(244,239,230,0.7);max-width:320px;margin-bottom:40px}
+  footer.site .bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:24px;border-top:1px solid rgba(244,239,230,0.14);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:0.1em;color:rgba(244,239,230,0.5);text-transform:uppercase;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width:960px){
+    .hero .wrap{grid-template-columns:1fr}
+    .about-grid{grid-template-columns:1fr;gap:40px}
+    .r-card.span-4,.r-card.span-6,.r-card.span-3{grid-column:span 12}
+    .join-head,.join-cta{grid-template-columns:1fr}
+    .role{grid-template-columns:1fr auto;gap:8px}
+    .role-kind{grid-column:1 / -1;margin-bottom:4px}
+    .role-meta{grid-column:1 / -1}
+    header.site .wrap{padding:14px 20px}
+    .wrap{padding:0 20px}
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG symbol defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo-crest" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M50 8 L84 18 L84 50 C84 70 70 84 50 92 C30 84 16 70 16 50 L16 18 Z" class="ink-stroke"/>
+        <path d="M50 13 L79 21.5 L79 50 C79 67.5 67 80 50 87.2 C33 80 21 67.5 21 50 L21 21.5 Z" stroke-width="0.7" class="ink-stroke"/>
+        <line x1="21" y1="55" x2="79" y2="55" stroke-width="0.7" class="ink-stroke"/>
+        <circle cx="50" cy="40" r="5" class="ink-stroke" fill="currentColor"/>
+        <ellipse cx="50" cy="40" rx="14" ry="5" class="ink-stroke"/>
+        <ellipse cx="50" cy="40" rx="14" ry="5" transform="rotate(60 50 40)" class="ink-stroke"/>
+        <ellipse cx="50" cy="40" rx="14" ry="5" transform="rotate(120 50 40)" class="ink-stroke"/>
+        <text x="50" y="71" text-anchor="middle" font-family="'Unbounded',sans-serif" font-weight="600" font-size="8.6" letter-spacing="0.2" fill="currentColor" stroke="none" class="ink-fill">USSR</text>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div id="app"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+<script type="text/babel">
+// ── i18n data ──────────────────────────────────────────────────────────────
+const STRINGS = {
+  en: {
+    brand_name: "University of Science\n& Strategic Research",
+    brand_tag:  "Established 2026 · Moscow",
+    nav_research: "Research",
+    nav_about:    "About",
+    nav_join:     "Join us",
+    lang_label:   "Language",
+    hero_flag:  "Moscow · Open hiring across all directions",
+    hero_h1_a:  "Inquiry without",
+    hero_h1_b:  "borders.",
+    hero_h1_c:  "Strategy with",
+    hero_h1_d:  "consequence.",
+    hero_lede:  "Established in 2026, the University of Science & Strategic Research is an independent research institution in Moscow dedicated to advancing fundamental science and translating discovery into policy, technology and public good. Across nine interdisciplinary research directions, our scholars pursue questions worth a decade — from foundation models and quantum information to genomics, climate science and the governance of frontier technology — under one roof in central Moscow.",
+    hero_cap:   "img · spring term, north quad",
+    research_h2_a:  "Nine directions, one question:",
+    research_h2_b:  "what comes next?",
+    research_desc:  "Our research directions are not departments — they are problem-shaped, interdisciplinary standing programs that bring together physicists, biologists, economists and engineers around questions worth a decade of effort. Each direction is led by a small steering group of senior researchers who set the agenda, recruit talent and commission cross-cutting work; the structure is meant to keep us close to the science and far from the org chart. Faculty hold appointments in a direction rather than a department, which makes it ordinary for a quantum physicist to share a laboratory with a synthetic biologist and for both to publish jointly with an economist down the hall. We expect the list to evolve as the questions do — directions can be founded, merged or wound down by the academic council, and every faculty member is invited to argue for what the next one should be.",
+    about_h2_a:  "A university built around",
+    about_h2_b:  "questions worth asking.",
+    about_desc:  "The University of Science & Strategic Research was founded in Moscow to bring fundamental inquiry and strategic study under a single roof. Our purpose is to pursue scientific questions of the longest horizon — the structure of matter, the architecture of mind, the limits of computation, the future of the planet — while cultivating the strategic literacy needed to act on what we find. We educate scholars who are equally at home in the laboratory and in the rooms where consequential decisions are made, and we treat our research directions as standing commitments: problems we expect to live with, refine, and answer over the course of a generation rather than a grant cycle.",
+    about_badge: "USSR · 2026",
+    about_cap:   "PROJECT ORION · LAB MEETING",
+    join_h2_a:   "Making the world better,",
+    join_h2_b:   "one problem at a time.",
+    join_desc:   "We are recruiting researchers, engineers, scholars and strategists from every country, at every career stage. If our research directions align with your work, we would like to hear from you. Hiring is open year-round, across all nine directions.",
+    join_apply_aria: (title) => `Apply for ${title}`,
+    cta_eyebrow:  "Not finding the right role?",
+    cta_headline: "Write to us anyway.",
+    cta_sub:      "We are still defining many positions. Talent will always find a place with us.",
+    cta_btn:      "Open contact form",
+    footer_addr_l1: "Leninsky Prospekt 14",
+    footer_addr_l2: "Moscow, Russia",
+    footer_copy:    "© MMXXVI — University of Science & Strategic Research",
+  },
+  ru: {
+    brand_name: "Университет науки\nи стратегических исследований",
+    brand_tag:  "Основан в 2026 · Москва",
+    nav_research: "Исследования",
+    nav_about:    "Об университете",
+    nav_join:     "Карьера",
+    lang_label:   "Язык",
+    hero_flag:  "Москва · Открытый набор по всем направлениям",
+    hero_h1_a:  "Исследования без",
+    hero_h1_b:  "границ.",
+    hero_h1_c:  "Стратегия с",
+    hero_h1_d:  "последствиями.",
+    hero_lede:  "Основанный в 2026 году, Университет науки и стратегических исследований — независимое научное учреждение в Москве, посвящённое развитию фундаментальной науки и претворению открытий в политику, технологии и общественное благо. По девяти междисциплинарным направлениям наши исследователи работают над вопросами, достойными десятилетия — от базовых моделей и квантовой информации до геномики, климатологии и регулирования передовых технологий — под одной крышей в центре Москвы.",
+    hero_cap:   "фото · весенний семестр, северный двор",
+    research_h2_a:  "Девять направлений, один вопрос:",
+    research_h2_b:  "что дальше?",
+    research_desc:  "Наши исследовательские направления — не кафедры, а постоянные междисциплинарные программы, выстроенные вокруг задач, объединяющие физиков, биологов, экономистов и инженеров вокруг вопросов, заслуживающих десятилетия усилий. Каждое направление возглавляет небольшая группа старших исследователей, которые задают повестку, привлекают таланты и инициируют сквозные проекты; такая структура держит нас ближе к науке и дальше от иерархии. Преподаватели закреплены за направлением, а не за кафедрой, поэтому естественно, когда физик-квантовик работает в одной лаборатории с синтетическим биологом, а оба публикуются совместно с экономистом из соседнего кабинета. Мы рассчитываем, что список будет меняться вместе с вопросами — направления могут учреждаться, объединяться или закрываться решением академического совета, и каждый научный сотрудник вправе предложить, каким должно быть следующее.",
+    about_h2_a:  "Университет вокруг",
+    about_h2_b:  "вопросов, достойных ответа.",
+    about_desc:  "Университет науки и стратегических исследований был основан в Москве, чтобы объединить фундаментальные исследования и стратегическое мышление под одной крышей. Наша цель — заниматься научными вопросами самого долгого горизонта: устройством материи, архитектурой разума, пределами вычислений, будущим планеты — одновременно развивая стратегическую грамотность, необходимую, чтобы действовать на основе полученных знаний. Мы готовим учёных, одинаково уверенных и в лаборатории, и в комнатах, где принимаются ответственные решения, и относимся к нашим направлениям как к долгосрочным обязательствам: задачам, с которыми мы готовы жить, уточнять и решать на протяжении поколения, а не одного грантового цикла.",
+    about_badge: "USSR · 2026",
+    about_cap:   "ПРОЕКТ ОРИОН · ЛАБОРАТОРНАЯ ВСТРЕЧА",
+    join_h2_a:   "Делаем мир лучше,",
+    join_h2_b:   "по одной задаче за раз.",
+    join_desc:   "Мы приглашаем исследователей, инженеров, учёных и стратегов из любой страны и на любом этапе карьеры. Если наши направления близки вашей работе — напишите нам. Набор открыт круглый год по всем девяти направлениям.",
+    join_apply_aria: (title) => `Подать заявку: ${title}`,
+    cta_eyebrow:  "Не нашли подходящую позицию?",
+    cta_headline: "Напишите нам.",
+    cta_sub:      "Мы ещё определяем многие позиции. Талантливые люди всегда найдут место у нас.",
+    cta_btn:      "Открыть форму контакта",
+    footer_addr_l1: "Ленинский проспект, 14",
+    footer_addr_l2: "Москва, Россия",
+    footer_copy:    "© MMXXVI — Университет науки и стратегических исследований",
+  },
+};
+
+const DIRECTIONS_I18N = {
+  en: [
+    { tag: "Computational", title: "Artificial Intelligence & Machine Learning", sub: "Foundation models, alignment, mechanistic interpretability, and AI for the sciences." },
+    { tag: "Physical",      title: "Quantum Information",                        sub: "Superconducting qubits, error correction, quantum sensing, and post-quantum cryptography." },
+    { tag: "Earth Systems", title: "Climate & Atmospheric Science",              sub: "Carbon removal, regional downscaling, geophysical risk, and adaptation engineering." },
+    { tag: "Life",          title: "Genomics & Synthetic Biology",               sub: "Single-cell atlases, gene editing, mRNA platforms, and engineered living systems." },
+    { tag: "Cognitive",     title: "Neuroscience & Brain Computation",           sub: "Connectomics, neural prosthetics, mental health biomarkers, and theories of cognition." },
+    { tag: "Materials",     title: "Advanced Materials & Energy",                sub: "Solid-state batteries, perovskites, room-temperature superconductors, and metamaterials." },
+    { tag: "Policy",        title: "Strategic & Security Studies",               sub: "Geoeconomics, defense innovation, and the governance of frontier tech." },
+    { tag: "Society",       title: "Behavioral & Economic Sciences",             sub: "Market design, causal inference at scale, labor economics, and decision science." },
+    { tag: "Frontier",      title: "Space & Planetary Sciences",                 sub: "Exoplanet atmospheres, in-situ resource utilization, and small-body sample return." },
+  ],
+  ru: [
+    { tag: "Вычислительные", title: "Искусственный интеллект и машинное обучение", sub: "Базовые модели, выравнивание, механистическая интерпретируемость и ИИ для науки." },
+    { tag: "Физические",     title: "Квантовая информация",                         sub: "Сверхпроводящие кубиты, коррекция ошибок, квантовые сенсоры и постквантовая криптография." },
+    { tag: "Системы Земли",  title: "Климат и наука об атмосфере",                  sub: "Удаление углерода, региональное даунскейлинг, геофизические риски и инженерия адаптации." },
+    { tag: "Жизнь",          title: "Геномика и синтетическая биология",            sub: "Атласы одиночных клеток, редактирование генов, мРНК-платформы и инженерные живые системы." },
+    { tag: "Когнитивные",    title: "Нейронаука и вычисления мозга",                sub: "Коннектомика, нейропротезы, биомаркеры психического здоровья и теории познания." },
+    { tag: "Материалы",      title: "Передовые материалы и энергетика",             sub: "Твердотельные батареи, перовскиты, сверхпроводники при комнатной температуре и метаматериалы." },
+    { tag: "Политика",       title: "Стратегические исследования и безопасность",   sub: "Геоэкономика, оборонные инновации и регулирование передовых технологий." },
+    { tag: "Общество",       title: "Поведенческие и экономические науки",          sub: "Дизайн рынков, причинно-следственный вывод в масштабе, экономика труда и теория решений." },
+    { tag: "Фронтир",        title: "Космические и планетарные науки",              sub: "Атмосферы экзопланет, использование ресурсов in-situ и доставка образцов малых тел." },
+  ],
+};
+
+const DIRECTION_META = [
+  { num: "I",    span: "span-4" },
+  { num: "II",   span: "span-4" },
+  { num: "III",  span: "span-4" },
+  { num: "IV",   span: "span-4" },
+  { num: "V",    span: "span-4" },
+  { num: "VI",   span: "span-4" },
+  { num: "VII",  span: "span-4" },
+  { num: "VIII", span: "span-4" },
+  { num: "IX",   span: "span-4" },
+];
+
+const ROLES_I18N = {
+  en: [
+    { kind: "Faculty",      title: "Assistant / Associate / Full Professor",  dir: "All nine research directions",        type: "Tenure-track · Open rank" },
+    { kind: "Postdoctoral", title: "USSR Junior Fellows Programme",            dir: "Self-directed",                       type: "3-year · Independent funding" },
+    { kind: "Research",     title: "Research Scientists & Senior Engineers",   dir: "World class facilities",              type: "Permanent · Industry-competitive" },
+    { kind: "Doctoral",     title: "PhD Programme — Direct Entry",             dir: "Cohort of 120 across all directions", type: "5-year · Full stipend" },
+    { kind: "Visiting",     title: "Visiting Scholar & Sabbatical Programme",  dir: "3 to 12 months",                      type: "Open to all career stages" },
+  ],
+  ru: [
+    { kind: "Профессура",    title: "Ассистент / Доцент / Профессор",                       dir: "Все направления",     type: "Бессрочный · Любой ранг" },
+    { kind: "Постдокторант", title: "Программа младших научных сотрудников USSR",           dir: "Свободный выбор",     type: "3 года · Независимый грант" },
+    { kind: "Исследователь", title: "Научные сотрудники и старшие инженеры",                dir: "Мировые лаборатории", type: "Постоянный · Высокая зарплата" },
+    { kind: "Аспирантура",   title: "Программа PhD — прямой набор",                         dir: "Набор 120 человек",   type: "5 лет · Полная стипендия" },
+    { kind: "Приглашённые",  title: "Программа приглашённых учёных и творческих отпусков",  dir: "От 3 до 12 месяцев",  type: "Для всех этапов карьеры" },
+  ],
+};
+
+// ── Lang context ───────────────────────────────────────────────────────────
+const LangContext = React.createContext({ lang: "en", setLang: () => {} });
+function useLang() { return React.useContext(LangContext); }
+
+function LangProvider({ children }) {
+  const [lang, setLangState] = React.useState(() => {
+    try { return localStorage.getItem("ussr-lang") || "en"; } catch { return "en"; }
+  });
+  const setLang = React.useCallback((v) => {
+    setLangState(v);
+    try { localStorage.setItem("ussr-lang", v); } catch {}
+    document.documentElement.lang = v;
+  }, []);
+  React.useEffect(() => { document.documentElement.lang = lang; }, [lang]);
+  return <LangContext.Provider value={{ lang, setLang }}>{children}</LangContext.Provider>;
+}
+
+function tt(key, lang) {
+  const s = STRINGS[lang] || STRINGS.en;
+  return s[key] !== undefined ? s[key] : (STRINGS.en[key] !== undefined ? STRINGS.en[key] : key);
+}
+
+// ── Shared components ──────────────────────────────────────────────────────
+function Logo({ size = 48 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" style={{ color: "currentColor" }}>
+      <use href="#logo-crest" />
+    </svg>
+  );
+}
+
+function MultilineText({ text }) {
+  return String(text).split("\n").map((p, i) =>
+    <React.Fragment key={i}>{i > 0 && <br />}{p}</React.Fragment>
+  );
+}
+
+function LangToggle() {
+  const { lang, setLang } = useLang();
+  return (
+    <div className="lang-toggle" role="group" aria-label={tt("lang_label", lang)}>
+      <button type="button" className={`lang-opt ${lang === "en" ? "is-active" : ""}`}
+        onClick={() => setLang("en")} aria-pressed={lang === "en"}>EN</button>
+      <span className="lang-sep" aria-hidden="true">/</span>
+      <button type="button" className={`lang-opt ${lang === "ru" ? "is-active" : ""}`}
+        onClick={() => setLang("ru")} aria-pressed={lang === "ru"}>RU</button>
+    </div>
+  );
+}
+
+// ── Sections ───────────────────────────────────────────────────────────────
+function Header() {
+  const { lang } = useLang();
+  return (
+    <header className="site">
+      <div className="wrap">
+        <a className="brand" href="#">
+          <span className="logo"><Logo size={46} /></span>
+          <span className="wm">
+            <span className="name"><MultilineText text={tt("brand_name", lang)} /></span>
+            <span className="tag">{tt("brand_tag", lang)}</span>
+          </span>
+        </a>
+        <nav className="primary">
+          <a href="#research">{tt("nav_research", lang)}</a>
+          <a href="#about-img">{tt("nav_about", lang)}</a>
+          <a href="#join">{tt("nav_join", lang)}</a>
+          <LangToggle />
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  const { lang } = useLang();
+  return (
+    <section className="hero">
+      <div className="wrap">
+        <div>
+          <div className="eyebrow young-flag">
+            <span className="dot" /> {tt("hero_flag", lang)}
+          </div>
+          <h1 style={{ fontSize: "60px" }}>
+            {tt("hero_h1_a", lang)}<br />
+            <em>{tt("hero_h1_b", lang)}</em> {tt("hero_h1_c", lang)}<br />
+            <em>{tt("hero_h1_d", lang)}</em>
+          </h1>
+          <p className="lede" style={{ margin: "28px 0px 38px" }}>{tt("hero_lede", lang)}</p>
+        </div>
+        <div>
+          <div className="hero-img hero-photo">
+            <img src="images/hero-students.jpg" alt="" />
+            <div className="cap">{tt("hero_cap", lang)}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ResearchSection() {
+  const { lang } = useLang();
+  const directions = DIRECTIONS_I18N[lang] || DIRECTIONS_I18N.en;
+  return (
+    <section className="block" id="research">
+      <div className="wrap">
+        <div className="section-head">
+          <h2>{tt("research_h2_a", lang)} <em style={{ fontStyle: "italic", color: "var(--copper-ink)" }}>{tt("research_h2_b", lang)}</em></h2>
+          <p className="desc wide">{tt("research_desc", lang)}</p>
+        </div>
+        <div className="research">
+          {directions.map((d, i) => {
+            const meta = DIRECTION_META[i];
+            return (
+              <article key={meta.num} className={`r-card ${meta.span}`}>
+                <div className="r-num">{meta.num} · {d.tag}</div>
+                <h3>{d.title}</h3>
+                <p className="r-sub">{d.sub}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutSection() {
+  const { lang } = useLang();
+  return (
+    <section className="block" id="about">
+      <div className="wrap">
+        <div className="about-grid">
+          <div className="section-head" style={{ marginBottom: 0 }}>
+            <h2>
+              {tt("about_h2_a", lang)}<br />
+              <em style={{ fontStyle: "italic", color: "var(--copper-ink)" }}>{tt("about_h2_b", lang)}</em>
+            </h2>
+            <p className="desc">{tt("about_desc", lang)}</p>
+          </div>
+          <div className="about-img hero-img hero-photo" id="about-img">
+            <img src="assets/about-researchers.png" alt="" />
+            <span className="badge">{tt("about_badge", lang)}</span>
+            <span className="cap">{tt("about_cap", lang)}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function JoinUsSection() {
+  const { lang } = useLang();
+  const roles = ROLES_I18N[lang] || ROLES_I18N.en;
+  const applyAria = STRINGS[lang]?.join_apply_aria || STRINGS.en.join_apply_aria;
+  return (
+    <section className="join" id="join">
+      <div className="wrap">
+        <div className="join-head">
+          <h2>
+            {tt("join_h2_a", lang)} <em style={{ fontStyle: "italic", color: "var(--copper)" }}>{tt("join_h2_b", lang)}</em>
+          </h2>
+          <p className="join-desc">{tt("join_desc", lang)}</p>
+        </div>
+        <ul className="roles">
+          {roles.map((r, i) => (
+            <li className="role" key={i}>
+              <a className="role-link" href="contact.html" aria-label={applyAria(r.title)} />
+              <div className="role-kind">{String(i + 1).padStart(2, "0")} / {r.kind}</div>
+              <div className="role-title">{r.title}</div>
+              <div className="role-meta">
+                <span>{r.dir}</span><span className="sep">·</span><span>{r.type}</span>
+              </div>
+              <span className="role-arrow" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 10 10"><path d="M2 8 L8 2 M8 2 H4 M8 2 V6" stroke="currentColor" fill="none" strokeWidth="1.2" strokeLinecap="round" /></svg>
+              </span>
+            </li>
+          ))}
+        </ul>
+        <div className="join-cta">
+          <div>
+            <div className="join-cta-eyebrow">{tt("cta_eyebrow", lang)}</div>
+            <div className="join-cta-headline">{tt("cta_headline", lang)}</div>
+            <div className="join-cta-sub">{tt("cta_sub", lang)}</div>
+          </div>
+          <a className="join-cta-btn" href="contact.html">
+            {tt("cta_btn", lang)}
+            <svg width="14" height="14" viewBox="0 0 10 10"><path d="M2 8 L8 2 M8 2 H4 M8 2 V6" stroke="currentColor" fill="none" strokeWidth="1.4" strokeLinecap="round" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  const { lang } = useLang();
+  return (
+    <footer className="site">
+      <div className="wrap">
+        <div className="mast">
+          <Logo size={48} />
+          <div>
+            <div className="nm"><MultilineText text={tt("brand_name", lang)} /></div>
+            <div className="tag">{tt("brand_tag", lang)}</div>
+          </div>
+        </div>
+        <address>
+          {tt("footer_addr_l1", lang)}<br />
+          {tt("footer_addr_l2", lang)}
+        </address>
+        <div className="bottom">
+          <div>{tt("footer_copy", lang)}</div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ── App root ───────────────────────────────────────────────────────────────
+function App() {
+  return (
+    <LangProvider>
+      <Header />
+      <Hero />
+      <ResearchSection />
+      <AboutSection />
+      <JoinUsSection />
+      <Footer />
+    </LangProvider>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("app")).render(<App />);
+</script>
+</body>
+</html>
