@@ -115,10 +115,8 @@
     font-family:var(--mono);font-size:10px;letter-spacing:0.1em;
     color:var(--ink);background:var(--paper);padding:6px 10px;border:1px solid var(--rule);
   }
-  .hero-img.hero-photo{aspect-ratio:1/1;background:var(--ink)}
-  .hero-img.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
-  .hero-photo-main{background-image:url('images/hero-students.jpg');background-size:cover;background-position:center top}
-  .about-photo-main{background-image:url('assets/about-researchers.jpg');background-size:cover;background-position:center center}
+  .hero-img.hero-photo{aspect-ratio:1/1;background:var(--paper-2)}
+  .hero-img.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block}
 
   /* ── Research grid ── */
   section.block{padding:96px 0}
@@ -477,7 +475,9 @@ function Hero() {
           <p className="lede" style={{ margin: "28px 0px 38px" }}>{tt("hero_lede", lang)}</p>
         </div>
         <div>
-          <div className="hero-img hero-photo hero-photo-main"></div>
+          <div className="hero-img hero-photo">
+            <img src="images/hero-students.jpg" alt="" />
+          </div>
         </div>
       </div>
     </section>
@@ -524,7 +524,9 @@ function AboutSection() {
             </h2>
             <p className="desc">{tt("about_desc", lang)}</p>
           </div>
-          <div className="about-img hero-img hero-photo about-photo-main" id="about-img"></div>
+          <div className="about-img hero-img hero-photo" id="about-img">
+            <img src="assets/about-researchers.jpg" alt="" />
+          </div>
         </div>
       </div>
     </section>
